@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    long long n, mij, x[200002],  y,  i, j, k, a, b;
+    
+    cin >> n;
+    
+    for(i = 1; i <= n; i++)
+    {
+        cin >> a >> b;
+        x[i] = a * a + b * b;
+    }
+    
+    sort(1 + x, 1 + x + n);
+    
+    cin >> k;
+    
+    for(i = 1; i <= k; i++)
+    {
+        cin >> y;
+        
+        y = y * y;
+        
+        if(y >= x[n])
+        {
+            mij = n;
+        }
+        else if(y < x[1])
+        {
+            mij = 0;
+        }
+        else
+        {
+        
+        int st = 1;
+        int dr = n;
+        
+        while(st <= dr)
+        {
+            mij = (st + dr) / 2;
+            
+            if(x[mij] < y and x[mij + 1] > y)
+            {
+                break;
+            }
+            else if(x[mij] == y)
+            {
+                break;
+            }
+            else if(x[mij] > y)
+            {
+                dr = mij - 1;
+            }
+            else
+            {
+                st = mij + 1;
+            }
+        }
+        
+        }
+        
+        cout << mij << ' ';
+    }
+    
+    return 0;
+}
